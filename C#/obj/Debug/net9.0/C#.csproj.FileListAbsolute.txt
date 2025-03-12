@@ -1,0 +1,14 @@
+/home/D4LM/Code/Projects/Hello World/C#/bin/Debug/net9.0/C#
+/home/D4LM/Code/Projects/Hello World/C#/bin/Debug/net9.0/C#.deps.json
+/home/D4LM/Code/Projects/Hello World/C#/bin/Debug/net9.0/C#.runtimeconfig.json
+/home/D4LM/Code/Projects/Hello World/C#/bin/Debug/net9.0/C#.dll
+/home/D4LM/Code/Projects/Hello World/C#/bin/Debug/net9.0/C#.pdb
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/C#.GeneratedMSBuildEditorConfig.editorconfig
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/C#.AssemblyInfoInputs.cache
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/C#.AssemblyInfo.cs
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/C#.csproj.CoreCompileInputs.cache
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/C#.dll
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/refint/C#.dll
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/C#.pdb
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/C#.genruntimeconfig.cache
+/home/D4LM/Code/Projects/Hello World/C#/obj/Debug/net9.0/ref/C#.dll

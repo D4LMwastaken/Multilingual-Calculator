@@ -36,40 +36,31 @@ def divide(a, b):
 def exponent(a, b):
     return f"{a} ** {b} = {a ** b}"
     
-def square_root(a):
+def square_root(a, b):
     return a ** 0.5
-
-
 
 def main():
     print(Name + "\nDeveloper: " + Dev + "\nVersion: " + Version)
+
+    handler = {
+        "add": add,
+        "subtract": subtract,
+        "divide": divide,
+        "multiply": multiply,
+        "exponent": exponent,
+        "square root": square_root, 
+        } 
+
     while True:
         answer = input("What do you want to do? ").lower()
+        a = int(input("Enter first number: "))
+        b = input("Enter second number (If Applicable, else leave empty): ")
+        
+        if not b == "" :
+            b = int(b) 
+
         if answer == "greet":
             greet()
-        elif answer == "add":
-            a = int(input("Enter first number: "))
-            b = int(input("Enter second number: "))
-            print(add(a, b))
-        elif answer == "subtract":
-            a = int(input("Enter first number: "))
-            b = int(input("Enter second number: "))
-            print(subtract(a, b))
-        elif answer == "multiply":
-            a = int(input("Enter first number: "))
-            b = int(input("Enter second number: "))
-            print(multiply(a, b))
-        elif answer == "divide":
-            a = int(input("Enter first number: "))
-            b = int(input("Enter second number: "))
-            print(divide(a, b))
-        elif answer == "exponent":
-            a = int(input("Enter base: "))
-            b = int(input("Enter exponent: "))
-            print(exponent(a, b))
-        elif answer == "square_root":
-            a = int(input("Enter number: "))
-            print(square_root(a))
         elif answer == "quit":
             break
         elif answer == "help":
@@ -77,6 +68,10 @@ def main():
             for cmd, desc in Functions.items():
                 print(f"{cmd:<12}- {desc}")
             print()
+        
+        if answer in handler :
+            print(handler[answer](a, b))
+
         else:
             print("Invalid command, check help")
     

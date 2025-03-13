@@ -1,221 +1,116 @@
-// Hello World/C#/test.cs
-// Translated from test.cpp which was originally from test.java
+// No namespace or class declaration needed for top-level statements
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Globalization;
+// Variables
+string Name = "Multilingual Calculator";
+string Dev = "D4LM";
+string CoDev = "AidanB446";
+string Version = "1.1";
 
-namespace HelloWorldTesting
+// Function list
+var Functions = new Dictionary<string, string>
 {
-    // Class definition
-    public class Calculator
+    {"greet", "Greet the user"},
+    {"add", "Add two numbers"},
+    {"subtract", "Subtract two numbers"},
+    {"multiply", "Multiply two numbers"},
+    {"divide", "Divide two numbers"},
+    {"exponent", "Raise a number to a power"},
+    {"square_root", "Calculate the square root of a number"},
+    {"quit", "Quit the program"},
+    {"help", "Display this help message"}
+};
+
+// Main program
+Console.WriteLine($"{Name}\nDeveloper: {Dev}\nCoDeveloper: {CoDev}\nVersion: {Version}");
+
+// Create dictionary of operations
+var handlers = new Dictionary<string, Func<double, double, string>>
+{
+    {"add", (a, b) => $"{a} + {b} = {a + b}"},
+    {"subtract", (a, b) => $"{a} - {b} = {a - b}"},
+    {"multiply", (a, b) => $"{a} * {b} = {a * b}"},
+    {"divide", (a, b) => b == 0 ? "Error: Division by zero" : $"{a} / {b} = {a / b}"},
+    {"exponent", (a, b) => $"{a} ** {b} = {Math.Pow(a, b)}"}
+};
+
+var unaryHandlers = new Dictionary<string, Func<double, string>>
+{
+    {"square_root", a => $"√{a} = {Math.Sqrt(a)}"}
+};
+
+bool running = true;
+while (running)
+{
+    Console.Write("What do you want to do? ");
+    string answer = (Console.ReadLine() ?? "").ToLower();
+
+    if (answer == "quit")
     {
-        // Constants
-        private const string NAME = "Hello World Testing";
-        private const string DEV = "D4LM";
-        private const string VERSION = "1.0";
-
-        // Dictionary to store functions and their descriptions
-        private Dictionary<string, string> functions;
-
-        // Constructor
-        public Calculator()
+        running = false;
+        Console.WriteLine("Goodbye!");
+        continue;
+    }
+    else if (answer == "help")
+    {
+        Console.WriteLine("\nAvailable commands:");
+        foreach (var pair in Functions)
         {
-            // Initialize function descriptions
-            functions = new Dictionary<string, string>
-            {
-                {"greet", "Greet the user"},
-                {"add", "Add two numbers"},
-                {"subtract", "Subtract two numbers"},
-                {"multiply", "Multiply two numbers"},
-                {"divide", "Divide two numbers"},
-                {"exponent", "Raise a number to a power"},
-                {"square_root", "Calculate the square root of a number"},
-                {"quit", "Quit the program"},
-                {"help", "Display this help message"}
-            };
+            Console.WriteLine($"{pair.Key.PadRight(12)}- {pair.Value}");
         }
-
-        // Functions
-        public void Greet()
-        {
-            Console.WriteLine("Hello World");
-        }
-
-        public string Add(double a, double b)
-        {
-            return $"{a:F2} + {b:F2} = {(a + b):F2}";
-        }
-
-        public string Subtract(double a, double b)
-        {
-            return $"{a:F2} - {b:F2} = {(a - b):F2}";
-        }
-
-        public string Multiply(double a, double b)
-        {
-            return $"{a:F2} * {b:F2} = {(a * b):F2}";
-        }
-
-        public string Divide(double a, double b)
-        {
-            return $"{a:F2} / {b:F2} = {(a / b):F2}";
-        }
-
-        public string Exponent(double a, double b)
-        {
-            return $"{a:F2} ^ {b:F2} = {Math.Pow(a, b):F2}";
-        }
-
-        public double SquareRoot(double a)
-        {
-            return Math.Sqrt(a);
-        }
-
-        public void DisplayHelp()
-        {
-            Console.WriteLine("\nAvailable commands:");
-            
-            // Sort the functions by name
-            foreach (var func in functions.OrderBy(f => f.Key))
-            {
-                // Calculate padding for alignment
-                int padding = 12 - func.Key.Length;
-                Console.Write(func.Key);
-                for (int i = 0; i < padding; i++)
-                {
-                    Console.Write(" ");
-                }
-                Console.WriteLine("- " + func.Value);
-            }
-            Console.WriteLine();
-        }
-
-        // Helper function to get user input
-        private string Question(string query)
-        {
-            Console.Write(query);
-            return Console.ReadLine();
-        }
-
-        // Main loop
-        public void Run()
-        {
-            Console.WriteLine($"{NAME}\nDeveloper: {DEV}\nVersion: {VERSION}");
-            
-            while (true)
-            {
-                string input = Question("What do you want to do? ");
-                // Convert to lowercase
-                input = input.ToLower();
-                
-                switch (input)
-                {
-                    case "greet":
-                        Greet();
-                        break;
-                    case "add":
-                        try
-                        {
-                            double a = Convert.ToDouble(Question("Enter first number: "), CultureInfo.InvariantCulture);
-                            double b = Convert.ToDouble(Question("Enter second number: "), CultureInfo.InvariantCulture);
-                            Console.WriteLine(Add(a, b));
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Invalid number format.");
-                        }
-                        break;
-                    case "subtract":
-                        try
-                        {
-                            double a = Convert.ToDouble(Question("Enter first number: "), CultureInfo.InvariantCulture);
-                            double b = Convert.ToDouble(Question("Enter second number: "), CultureInfo.InvariantCulture);
-                            Console.WriteLine(Subtract(a, b));
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Invalid number format.");
-                        }
-                        break;
-                    case "multiply":
-                        try
-                        {
-                            double a = Convert.ToDouble(Question("Enter first number: "), CultureInfo.InvariantCulture);
-                            double b = Convert.ToDouble(Question("Enter second number: "), CultureInfo.InvariantCulture);
-                            Console.WriteLine(Multiply(a, b));
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Invalid number format.");
-                        }
-                        break;
-                    case "divide":
-                        try
-                        {
-                            double a = Convert.ToDouble(Question("Enter first number: "), CultureInfo.InvariantCulture);
-                            double b = Convert.ToDouble(Question("Enter second number: "), CultureInfo.InvariantCulture);
-                            Console.WriteLine(Divide(a, b));
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Invalid number format.");
-                        }
-                        break;
-                    case "exponent":
-                        try
-                        {
-                            double a = Convert.ToDouble(Question("Enter base: "), CultureInfo.InvariantCulture);
-                            double b = Convert.ToDouble(Question("Enter exponent: "), CultureInfo.InvariantCulture);
-                            Console.WriteLine(Exponent(a, b));
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Invalid number format.");
-                        }
-                        break;
-                    case "square_root":
-                        try
-                        {
-                            double a = Convert.ToDouble(Question("Enter number: "), CultureInfo.InvariantCulture);
-                            Console.WriteLine($"Square root of {a:F2} = {SquareRoot(a):F4}");
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Invalid number format.");
-                        }
-                        break;
-                    case "quit":
-                        Console.WriteLine("Goodbye!");
-                        return;
-                    case "help":
-                        DisplayHelp();
-                        break;
-                    default:
-                        Console.WriteLine("Invalid command, check help");
-                        break;
-                }
-            }
-        }
+        Console.WriteLine();
+        continue;
+    }
+    else if (answer == "greet")
+    {
+        Console.WriteLine("Hello World!");
+        continue;
     }
 
-    class Program
+    try
     {
-        static void Main(string[] args)
+        Console.Write("Enter first number: ");
+        string aInput = Console.ReadLine() ?? "";
+        if (!double.TryParse(aInput, out double a))
         {
-            // Create calculator object and run it
-            Calculator calc = new Calculator();
-            
-            try
-            {
-                calc.Run();
-            }
-            catch (Exception e)
-            {
-                Console.Error.WriteLine($"Error: {e.Message}");
-                Environment.Exit(1);
-            }
+            Console.WriteLine("Please enter valid numbers");
+            continue;
         }
+
+        if (answer == "square_root")
+        {
+            if (unaryHandlers.TryGetValue(answer, out var handler))
+            {
+                Console.WriteLine(handler(a));
+            }
+            continue;
+        }
+
+        Console.Write("Enter second number: ");
+        string bInput = Console.ReadLine() ?? "";
+        
+        if (string.IsNullOrEmpty(bInput))
+        {
+            Console.WriteLine("Second number is required for this operation");
+            continue;
+        }
+
+        if (!double.TryParse(bInput, out double b))
+        {
+            Console.WriteLine("Please enter valid numbers");
+            continue;
+        }
+
+        if (handlers.TryGetValue(answer, out var operation))
+        {
+            Console.WriteLine(operation(a, b));
+        }
+        else
+        {
+            Console.WriteLine("Invalid command, type 'help' for available commands");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred: {ex.Message}");
     }
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/D4LM/Code/Projects/Hello World/C#/C#.csproj",
+      "projectUniqueName": "/home/D4LM/Documents/GitHub/AidanB446-Multilingual-Calculator/C#/C#.csproj",
       "projectName": "C#",
-      "projectPath": "/home/D4LM/Code/Projects/Hello World/C#/C#.csproj",
+      "projectPath": "/home/D4LM/Documents/GitHub/AidanB446-Multilingual-Calculator/C#/C#.csproj",
       "packagesPath": "/home/D4LM/.nuget/packages/",
-      "outputPath": "/home/D4LM/Code/Projects/Hello World/C#/obj/",
+      "outputPath": "/home/D4LM/Documents/GitHub/AidanB446-Multilingual-Calculator/C#/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/D4LM/.nuget/NuGet/NuGet.Config"

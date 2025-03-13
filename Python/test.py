@@ -1,4 +1,3 @@
-
 # Variables
 Name = "Hello World Testing"
 Dev = "D4LM"
@@ -31,13 +30,15 @@ def multiply(a, b):
     return f"{a} * {b} = {a * b}"
     
 def divide(a, b):
+    if b == 0:
+        return "Error: Division by zero"
     return f"{a} / {b} = {a / b}"
     
 def exponent(a, b):
     return f"{a} ** {b} = {a ** b}"
     
-def square_root(a, b):
-    return a ** 0.5
+def square_root(a):
+    return f"√{a} = {a ** 0.5}"
 
 def main():
     print(Name + "\nDeveloper: " + Dev + "\nVersion: " + Version)
@@ -48,31 +49,44 @@ def main():
         "divide": divide,
         "multiply": multiply,
         "exponent": exponent,
-        "square root": square_root, 
-        } 
+        "square_root": square_root,  # Fixed key name to match Functions dictionary
+    } 
 
     while True:
         answer = input("What do you want to do? ").lower()
-        a = int(input("Enter first number: "))
-        b = input("Enter second number (If Applicable, else leave empty): ")
         
-        if not b == "" :
-            b = int(b) 
-
-        if answer == "greet":
-            greet()
-        elif answer == "quit":
+        if answer == "quit":
             break
         elif answer == "help":
             print("\nAvailable commands:")
             for cmd, desc in Functions.items():
                 print(f"{cmd:<12}- {desc}")
             print()
+            continue
+        elif answer == "greet":
+            greet()
+            continue
+            
+        try:
+            a = int(input("Enter first number: "))
+            
+            if answer == "square_root":
+                print(square_root(a))
+                continue
+                
+            b = input("Enter second number: ")
+            if not b:
+                print("Second number is required for this operation")
+                continue
+                
+            b = int(b)
+            
+            if answer in handler:
+                print(handler[answer](a, b))
+            else:
+                print("Invalid command, type 'help' for available commands")
+                
+        except ValueError:
+            print("Please enter valid numbers")
         
-        if answer in handler :
-            print(handler[answer](a, b))
-
-        else:
-            print("Invalid command, check help")
-    
 main()
